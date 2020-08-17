@@ -2,8 +2,9 @@
     "name": "rts-api",
     "version": "1.0.0",
     "description": "An unofficial API for the RTS bus network",
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "scripts": {
+        "build": "tsc",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -21,5 +22,7 @@
         "url": "https://github.com/lucasgrinspan/rts-api/issues"
     },
     "homepage": "https://github.com/lucasgrinspan/rts-api#readme",
-    "devDependencies": {}
+    "devDependencies": {
+        "typescript": "^3.9.7"
+    }
 }
