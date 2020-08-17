@@ -1,4 +1,4 @@
-const { getAgencies, getRoutes } = require("../dist/index");
+const { getAgencies, getRoutes, getSegments, getStops } = require("../dist/index");
 global.fetch = require("node-fetch");
 let targets = process.argv.slice(2);
 
@@ -13,6 +13,7 @@ let targets = process.argv.slice(2);
 //   bus
 //   stop
 //   segment
+//   announcement
 
 if (targets.length === 0) {
     targets = ["agency", "route", "bus", "stop", "segment", "announcement"];
@@ -28,6 +29,12 @@ targets.reduce(async (memo, target) => {
         case "route":
             apiCall = getRoutes("116");
             break;
+        case "segment":
+            apiCall = getSegments("116");
+            break;
+        case "stop":
+            apiCall = getStops("116");
+            break;
         default:
             console.log(`${target} is not a valid data shape`);
             break;
@@ -37,7 +44,11 @@ targets.reduce(async (memo, target) => {
         console.log(target);
         try {
             const data = await apiCall;
-            console.log(data[0]);
+            if (Array.isArray(data)) {
+                console.log(data[0]);
+            } else {
+                console.log(data);
+            }
         } catch (err) {
             console.log(err);
         }

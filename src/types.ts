@@ -27,8 +27,25 @@ export interface Route {
     id: string;
     isActive: boolean;
     longName: string;
+    segments: string[];
     shortName: string;
     textColor: string;
     type: string;
+    url: string;
+}
+
+export interface Segment {
+    levels: string;
+    points: string;
+}
+
+export interface Stop {
+    code: string;
+    description: string;
+    id: string;
+    locationType: string;
+    name: string;
+    parentStationID: string;
+    position: number[];
     url: string;
 }
