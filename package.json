@@ -4,6 +4,7 @@
     "description": "An unofficial API for the RTS bus network",
     "main": "dist/index.js",
     "scripts": {
+        "start": "tsc --watch",
         "build": "tsc",
         "test": "node ./tests/callEndpoints.js",
         "test:endpoints": "node ./tests/callEndpoints.js",
