@@ -1,5 +1,6 @@
 export {
     getCurrentBuses,
+    getAgencies,
     getAgency,
     getAnnouncements,
     getRoutes,

@@ -1,10 +1,27 @@
 import get, { generateUrl } from "./utils";
+import { getAgenciesFromData } from "./convert";
+import { Agency } from "./types";
+
+// Get information about all of the agencies
+export const getAgencies = async (): Promise<Agency[]> => {
+    const url = generateUrl("agencies");
+
+    const data = await get(url, "agency");
+
+    const agencies = getAgenciesFromData(data);
+
+    return agencies;
+};
 
 // Get information about the selected agency
-export const getAgency = (agency = "") => {
+export const getAgency = async (agency: string): Promise<Agency> => {
     const url = generateUrl("agencies", agency);
 
-    return get(url, "agency");
+    const data = await get(url, "agency");
+
+    const agencies = getAgenciesFromData(data);
+
+    return agencies[0];
 };
 
 // Get information about all of the available bus routes

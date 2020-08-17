@@ -1,7 +1,7 @@
 const BASE_URL = "https://feeds.transloc.com/3/";
 
 // Generate the base URL based on the location ID
-const generateUrl = (resource: string, agency: string, opts = {}) => {
+const generateUrl = (resource: string, agency = "", opts = {}) => {
     const params = new URLSearchParams();
 
     if (agency) {
@@ -22,13 +22,25 @@ const generateUrl = (resource: string, agency: string, opts = {}) => {
     return `${BASE_URL}${resource}?${params.toString()}`;
 };
 
-const get = (url: string, resource: string) => {
-    return fetch(url).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        throw new Error(`Error fetching ${resource} data from RTS`);
-    });
+const get = async (url: string, resource: string) => {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`Error fetching ${resource} data from RTS. url: ${url}`);
+    }
+
+    const jsonData = await response.json();
+
+    // Each RTS response has a boolean field indicating whether the server
+    // can successfully respond
+    if (!jsonData.success) {
+        const errorMessage: string = jsonData.message;
+        throw new Error(
+            `Error from RTS server while fetching ${resource}. Message: ${errorMessage}. url: ${url}`
+        );
+    }
+
+    return jsonData;
 };
 
 export { get as default, generateUrl };
