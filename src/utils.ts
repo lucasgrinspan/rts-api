@@ -22,6 +22,7 @@ const generateUrl = (resource: string, agency = "", opts = {}) => {
     return `${BASE_URL}${resource}?${params.toString()}`;
 };
 
+// Makes the GET request to the RTS servers
 const get = async (url: string, resource: string) => {
     const response = await fetch(url);
 

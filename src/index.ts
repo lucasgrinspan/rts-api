@@ -6,4 +6,4 @@ export {
     getRoutes,
     getSegments,
     getStops,
-} from "./buses";
+} from "./apiCalls";

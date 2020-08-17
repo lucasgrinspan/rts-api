@@ -1,20 +1,34 @@
 // This file holds the definition for each resource
 export interface Agency {
-    affiliated_agencies: string[];
-    arrival_predictions: boolean;
+    affiliatedAgencies: string[];
+    arrivalPredictions: boolean;
     bounds: number[];
     color: string;
-    has_notifications: boolean;
-    has_schedules: boolean;
-    has_trip_planning: boolean;
+    hasNotifications: boolean;
+    hasSchedules: boolean;
+    hasTripPlanning: boolean;
     id: number;
     location: string;
-    long_name: string;
+    longName: string;
     name: string;
     position: number[];
-    short_name: string;
-    text_color: string;
+    shortName: string;
+    textColor: string;
     timezone: string;
-    timezone_offset: number;
+    timezoneOffset: number;
+    url: string;
+}
+
+export interface Route {
+    agencyID: number;
+    bounds: number[];
+    color: string;
+    description: string;
+    id: number;
+    isActive: boolean;
+    longName: string;
+    shortName: string;
+    textColor: string;
+    type: string;
     url: string;
 }

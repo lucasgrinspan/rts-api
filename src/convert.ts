@@ -1,9 +1,11 @@
-import { Agency } from "./types";
+import { Agency, Route } from "./types";
 
 // This file converts JSON from the server to objects
 
+// Data keys to extract the information from the json data from the server
 const DATA_KEYS = {
     agencies: "agencies",
+    routes: "routes",
 };
 
 export const getAgenciesFromData = (data: any): Agency[] => {
@@ -11,22 +13,22 @@ export const getAgenciesFromData = (data: any): Agency[] => {
 
     const agencies: Agency[] = agenciesData.map((agencyData) => {
         const agency: Agency = {
-            affiliated_agencies: agencyData.affiliated_agencies,
-            arrival_predictions: agencyData.arrival_predictions,
+            affiliatedAgencies: agencyData.affiliated_agencies,
+            arrivalPredictions: agencyData.arrival_predictions,
             bounds: agencyData.bounds,
             color: agencyData.color,
-            has_notifications: agencyData.has_notifications,
-            has_schedules: agencyData.has_schedules,
-            has_trip_planning: agencyData.has_trip_planning,
+            hasNotifications: agencyData.has_notifications,
+            hasSchedules: agencyData.has_schedules,
+            hasTripPlanning: agencyData.has_trip_planning,
             id: agencyData.id.toString(),
             location: agencyData.location,
-            long_name: agencyData.long_name,
+            longName: agencyData.long_name,
             name: agencyData.name,
             position: agencyData.position,
-            short_name: agencyData.short_name,
-            text_color: agencyData.text_color,
+            shortName: agencyData.short_name,
+            textColor: agencyData.text_color,
             timezone: agencyData.timezone,
-            timezone_offset: agencyData.timezone_offset,
+            timezoneOffset: agencyData.timezone_offset,
             url: agencyData.url || "",
         };
 
@@ -34,4 +36,28 @@ export const getAgenciesFromData = (data: any): Agency[] => {
     });
 
     return agencies;
+};
+
+export const getRoutesFromData = (data: any): Route[] => {
+    const routesData: any[] = data[DATA_KEYS.routes];
+
+    const routes: Route[] = routesData.map((routeData) => {
+        const route: Route = {
+            agencyID: routeData.agency_id.toString(),
+            bounds: routeData.bounds,
+            color: routeData.color,
+            description: routeData.description,
+            id: routeData.id.toString(),
+            isActive: routeData.is_active,
+            longName: routeData.long_name,
+            shortName: routeData.short_name,
+            textColor: routeData.text_color,
+            type: routeData.type,
+            url: routeData.url,
+        };
+
+        return route;
+    });
+
+    return routes;
 };

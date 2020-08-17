@@ -1,6 +1,8 @@
 import get, { generateUrl } from "./utils";
-import { getAgenciesFromData } from "./convert";
-import { Agency } from "./types";
+import { getAgenciesFromData, getRoutesFromData } from "./convert";
+import { Agency, Route } from "./types";
+
+// This file defines all of the possible endpoints that you can call
 
 // Get information about all of the agencies
 export const getAgencies = async (): Promise<Agency[]> => {
@@ -25,10 +27,14 @@ export const getAgency = async (agency: string): Promise<Agency> => {
 };
 
 // Get information about all of the available bus routes
-export const getRoutes = (agency: string) => {
+export const getRoutes = async (agency: string): Promise<Route[]> => {
     const url = generateUrl("routes", agency);
 
-    return get(url, "routes");
+    const data = await get(url, "routes");
+
+    const routes = getRoutesFromData(data);
+
+    return routes;
 };
 
 // Get information about all of the segments that make the bus routes
