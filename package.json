@@ -2,7 +2,7 @@
     "name": "rts-api",
     "version": "1.0.0",
     "description": "An unofficial API for the RTS bus network",
-    "main": "index.js",
+    "main": "src/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -20,5 +20,6 @@
     "bugs": {
         "url": "https://github.com/lucasgrinspan/rts-api/issues"
     },
-    "homepage": "https://github.com/lucasgrinspan/rts-api#readme"
+    "homepage": "https://github.com/lucasgrinspan/rts-api#readme",
+    "devDependencies": {}
 }
