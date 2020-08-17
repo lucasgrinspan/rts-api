@@ -20,11 +20,11 @@ export interface Agency {
 }
 
 export interface Route {
-    agencyID: number;
+    agencyID: string;
     bounds: number[];
     color: string;
     description: string;
-    id: number;
+    id: string;
     isActive: boolean;
     longName: string;
     shortName: string;
