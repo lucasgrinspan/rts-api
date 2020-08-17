@@ -3,9 +3,12 @@ const BASE_URL = "https://feeds.transloc.com/3/";
 // Generate the base URL based on the location ID
 const generateUrl = (resource: string, agency: string, opts = {}) => {
     const params = new URLSearchParams();
-    params.append("agencies", agency);
 
-    // Typically, extra options is used by vehicle_statuses
+    if (agency) {
+        params.append("agencies", agency);
+    }
+
+    // Typically, extra options is only used by vehicle_statuses
     // to include arrivals
     if (opts !== {}) {
         Object.entries(opts).forEach((entry) => {
