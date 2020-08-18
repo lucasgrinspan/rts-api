@@ -24,6 +24,7 @@ getCurrentBuses(agencyID).then((buses) => console.log(buses));
 #### `getCurrentBuses(agencyID: string)`
 
 Returns an array of bus objects (promise) that are currently in service.
+
 Bus object:
 | Field Name | Type | Description |
 |-|-|-|
@@ -57,6 +58,7 @@ Returns an agency object (promise)
 #### `getAgencies()`
 
 Returns an array of agency objects
+
 Agency object:
 | Field Name | Type | Description |
 |-|-|-|
@@ -80,20 +82,22 @@ Agency object:
 #### `getStops(agencyID: string)`
 
 Returns an array of bus stop objects (promise) for the specified agency.
-| Field Name | Type | Description |
-|-|-|-|
-| `code` | `string` | Unsure |
-| `description` | `string` | A description of this bus stop, typically the stop's address |
-| `id` | `string` | The unique ID for this bus stop |
-| `locationType` | `string` | The type for this stop, typically `"stop"` |
-| `name` | `string` | The name for this bus stop |
-| `parentStationID` | `string` | The ID of this stop's parent station (largely unused) |
-| `position` | `number[]` | The coordinates of this bus stop, `[latitude, longitude]` |
-| `url` | `string` | The URL for this bus stop (largely unused) |
+
+| Field Name        | Type       | Description                                                  |
+| ----------------- | ---------- | ------------------------------------------------------------ |
+| `code`            | `string`   | Unsure                                                       |
+| `description`     | `string`   | A description of this bus stop, typically the stop's address |
+| `id`              | `string`   | The unique ID for this bus stop                              |
+| `locationType`    | `string`   | The type for this stop, typically `"stop"`                   |
+| `name`            | `string`   | The name for this bus stop                                   |
+| `parentStationID` | `string`   | The ID of this stop's parent station (largely unused)        |
+| `position`        | `number[]` | The coordinates of this bus stop, `[latitude, longitude]`    |
+| `url`             | `string`   | The URL for this bus stop (largely unused)                   |
 
 #### `getRoutes(agencyID: string)`
 
-Returns an array of route objects (promise) that are in the specified agency
+Returns an array of route objects (promise) that are in the specified agency.
+
 Route object:
 | Field Name | Type | Description |
 |-|-|-|
@@ -113,7 +117,8 @@ Route object:
 #### `getSegments(agencyID: string)`
 
 Returns a `Map`, where the key is the segment's unique ID and the value is the segment object (promise).
-Segments are used to draw the routes on a map
+Segments are used to draw the routes on a map.
+
 Segment object:
 | Field Name | Type | Description |
 |-|-|-|
@@ -123,6 +128,7 @@ Segment object:
 #### `getAnnouncements(agencyID: string)`
 
 Returns an array of announcements (promise) for the specified agency.
+
 Announcement object:
 | Field Name | Type | Description |
 |-|-|-|
