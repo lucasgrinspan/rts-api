@@ -29,7 +29,8 @@ The RTS API provides the following data objects:
 -   Route
 -   Segment
 -   Announcement
-    The data types are defined below. The fields are sorted by utility to the average use case. Note: the usage of some fields are currently unknown.
+
+The data types are defined below. The fields are sorted by utility to the average use case. Note: the usage of some fields are currently unknown.
 
 #### `getCurrentBuses(agencyID: string)`
 
