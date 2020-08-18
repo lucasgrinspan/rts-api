@@ -1,4 +1,4 @@
-import { Agency, Route, Segment, Stop, Bus } from "./types";
+import { Agency, Route, Segment, Stop, Bus, Announcement } from "./types";
 
 // This file converts JSON from the server to objects
 
@@ -9,6 +9,7 @@ const DATA_KEYS = {
     segments: "segments",
     stops: "stops",
     buses: "vehicles",
+    announcements: "announcements",
 };
 
 export const getAgenciesFromData = (data: any): Agency[] => {
@@ -137,4 +138,25 @@ export const getBusesFromData = (data: any): Bus[] => {
     });
 
     return buses;
+};
+
+export const getAnnouncementsFromData = (data: any): Announcement[] => {
+    const announcementsData: any[] = data[DATA_KEYS.announcements];
+
+    const announcements: Announcement[] = announcementsData.map((announcementData) => {
+        const announcement: Announcement = {
+            agencyID: announcementData.agency_id,
+            date: announcementData.date,
+            hasContent: announcementData.has_content,
+            id: announcementData.id.toString(),
+            startAt: new Date(announcementData.start_at),
+            title: announcementData.title,
+            urgent: announcementData.urgent,
+            content: announcementData.html,
+        };
+
+        return announcement;
+    });
+
+    return announcements;
 };

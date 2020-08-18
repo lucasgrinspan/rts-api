@@ -1,4 +1,11 @@
-const { getAgencies, getRoutes, getSegments, getStops, getCurrentBuses } = require("../dist/index");
+const {
+    getAgencies,
+    getRoutes,
+    getSegments,
+    getStops,
+    getCurrentBuses,
+    getAnnouncements,
+} = require("../dist/index");
 global.fetch = require("node-fetch");
 let targets = process.argv.slice(2);
 
@@ -37,6 +44,9 @@ targets.reduce(async (memo, target) => {
             break;
         case "bus":
             apiCall = getCurrentBuses("116");
+            break;
+        case "announcement":
+            apiCall = getAnnouncements("116");
             break;
         default:
             console.log(`${target} is not a valid data shape`);

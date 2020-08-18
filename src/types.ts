@@ -74,3 +74,14 @@ export interface Bus {
     load: number | null;
     apcStatus: string;
 }
+
+export interface Announcement {
+    agencyID: string;
+    date: string;
+    hasContent: boolean;
+    id: string;
+    startAt: Date;
+    title: string;
+    urgent: boolean;
+    content: string;
+}

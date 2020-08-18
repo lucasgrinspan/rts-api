@@ -5,6 +5,7 @@ import {
     getSegmentsFromData,
     getStopsFromData,
     getBusesFromData,
+    getAnnouncementsFromData,
 } from "./convert";
 import { Agency, Route, Segment } from "./types";
 
@@ -77,8 +78,12 @@ export const getCurrentBuses = async (agency: string) => {
 };
 
 // Get the current announcements
-export const getAnnouncements = (agency: string) => {
-    const url = generateUrl("announcements", agency);
+export const getAnnouncements = async (agency: string) => {
+    const url = generateUrl("announcements", agency, { contents: "true" });
 
-    return get(url, "announcements");
+    const data = await get(url, "announcements");
+
+    const announcements = getAnnouncementsFromData(data);
+
+    return announcements;
 };
