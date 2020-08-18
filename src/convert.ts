@@ -91,7 +91,7 @@ export const getStopsFromData = (data: any): Stop[] => {
         const stop: Stop = {
             code: stopsData.code,
             description: stopsData.description,
-            id: stopsData.id,
+            id: stopsData.id.toString(),
             locationType: stopsData.location_type,
             name: stopsData.name,
             parentStationID: stopsData.parentStationID ? stopsData.parentStationID.toString() : "",
@@ -145,7 +145,7 @@ export const getAnnouncementsFromData = (data: any): Announcement[] => {
 
     const announcements: Announcement[] = announcementsData.map((announcementData) => {
         const announcement: Announcement = {
-            agencyID: announcementData.agency_id,
+            agencyID: announcementData.agency_id.toString(),
             date: announcementData.date,
             hasContent: announcementData.has_content,
             id: announcementData.id.toString(),
