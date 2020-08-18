@@ -1,9 +1,22 @@
 # rts-api
 
-The unofficial JavaScript bindings for the RTS bus network API.
+An unofficial JavaScript bindings for the RTS bus network API.
+
 Note: since there is no public documentation for the API, the usage of some of the data points provided by the API is unknown, but the data is provided anyway, unmodified from the original data, only organized. If there is a mistake, let me know.
 
 Most of the data provided by the API will be unnecessary for the average use case of this project, so the data fields are sorted by utility in the docs below.
+
+-   [rts-api](#rts-api)
+    -   [Installation](#installation)
+    -   [Usage](#usage)
+    -   [Functions](#functions)
+        -   [`getCurrentBuses(agencyID: string)`](#-getcurrentbuses-agencyid--string--)
+        -   [`getAgency(agencyID: string)`](#-getagency-agencyid--string--)
+        -   [`getAgencies()`](#-getagencies---)
+        -   [`getStops(agencyID: string)`](#-getstops-agencyid--string--)
+        -   [`getRoutes(agencyID: string)`](#-getroutes-agencyid--string--)
+        -   [`getSegments(agencyID: string)`](#-getsegments-agencyid--string--)
+        -   [`getAnnouncements(agencyID: string)`](#-getannouncements-agencyid--string--)
 
 ## Installation
 
@@ -23,7 +36,7 @@ getCurrentBuses(agencyID).then((buses) => console.log(buses));
 
 ## Functions
 
-The RTS API provides the following data objects:
+The following data can be retrieved using the RTS API:
 
 -   Agency
 -   Vehicle
@@ -34,9 +47,11 @@ The RTS API provides the following data objects:
 
 The data types are defined below. The fields are sorted by utility to the average use case. Note: the usage of some fields are currently unknown.
 
+Each function below returns a promise that resolves to the data.
+
 #### `getCurrentBuses(agencyID: string)`
 
-Returns an array of bus objects (promise) that are currently in service.
+Returns an array of bus objects that are currently in service.
 
 Bus object:
 | Field Name | Type | Description |
@@ -66,7 +81,7 @@ Bus object:
 
 #### `getAgency(agencyID: string)`
 
-Returns an agency object (promise)
+Returns an agency object
 
 #### `getAgencies()`
 
@@ -94,7 +109,7 @@ Agency object:
 
 #### `getStops(agencyID: string)`
 
-Returns an array of bus stop objects (promise) for the specified agency.
+Returns an array of bus stop objects for the specified agency.
 
 | Field Name        | Type       | Description                                                  |
 | ----------------- | ---------- | ------------------------------------------------------------ |
@@ -109,7 +124,7 @@ Returns an array of bus stop objects (promise) for the specified agency.
 
 #### `getRoutes(agencyID: string)`
 
-Returns an array of route objects (promise) that are in the specified agency.
+Returns an array of route objects that are in the specified agency.
 
 Route object:
 | Field Name | Type | Description |
@@ -129,7 +144,7 @@ Route object:
 
 #### `getSegments(agencyID: string)`
 
-Returns a `Map`, where the key is the segment's unique ID and the value is the segment object (promise).
+Returns a `Map`, where the key is the segment's unique ID and the value is the segment object.
 Segments are used to draw the routes on a map.
 
 Segment object:
@@ -140,7 +155,7 @@ Segment object:
 
 #### `getAnnouncements(agencyID: string)`
 
-Returns an array of announcements (promise) for the specified agency.
+Returns an array of announcements for the specified agency.
 
 Announcement object:
 | Field Name | Type | Description |
