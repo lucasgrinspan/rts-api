@@ -1,4 +1,4 @@
-import { Agency, Route, Segment, Stop } from "./types";
+import { Agency, Route, Segment, Stop, Bus } from "./types";
 
 // This file converts JSON from the server to objects
 
@@ -8,6 +8,7 @@ const DATA_KEYS = {
     routes: "routes",
     segments: "segments",
     stops: "stops",
+    buses: "vehicles",
 };
 
 export const getAgenciesFromData = (data: any): Agency[] => {
@@ -101,4 +102,39 @@ export const getStopsFromData = (data: any): Stop[] => {
     });
 
     return stops;
+};
+
+export const getBusesFromData = (data: any): Bus[] => {
+    const busesData: any[] = data[DATA_KEYS.buses];
+
+    const buses: Bus[] = busesData.map((busData) => {
+        const bus: Bus = {
+            id: busData.id,
+            serviceStatus: busData.service_status,
+            agencyID: busData.agency_id.toString(),
+            routeID: busData.route_id.toString(),
+            tripID: busData.trip_id ? busData.trip_id.toString() : "",
+            tripStart: new Date(busData.TripStart),
+            tripEnd: new Date(busData.TripEnd),
+            gtfsTripID: busData.gtfs_trip_id,
+            direction: busData.direction,
+            stopPatternID: busData.stop_pattern_id.toString(),
+            callName: busData.call_name,
+            currentStopID: busData.current_stop_id ? busData.current_stop_id.toString() : "",
+            nextStopID: busData.next_stop ? busData.next_stop.toString() : "",
+            arrivalStatus: busData.arrival_status,
+            position: busData.position,
+            heading: busData.heading,
+            speed: busData.speed,
+            segmentID: busData.segment_id ? busData.segment_id.toString() : "",
+            offRoute: busData.off_route,
+            timestamp: busData.timestamp,
+            load: busData.load,
+            apcStatus: busData.apc_status,
+        };
+
+        return bus;
+    });
+
+    return buses;
 };

@@ -49,3 +49,28 @@ export interface Stop {
     position: number[];
     url: string;
 }
+
+export interface Bus {
+    id: string;
+    serviceStatus: string;
+    agencyID: string;
+    routeID: string;
+    tripID: string;
+    tripStart: Date;
+    tripEnd: Date;
+    gtfsTripID: string;
+    direction: boolean;
+    stopPatternID: string;
+    callName: string;
+    currentStopID: string;
+    nextStopID: string;
+    arrivalStatus: "Early" | "Late" | "N/A" | "On-Time";
+    position: number[];
+    heading: number;
+    speed: number;
+    segmentID: string;
+    offRoute: boolean;
+    timestamp: number;
+    load: number | null;
+    apcStatus: string;
+}

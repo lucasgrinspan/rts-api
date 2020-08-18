@@ -4,6 +4,7 @@ import {
     getRoutesFromData,
     getSegmentsFromData,
     getStopsFromData,
+    getBusesFromData,
 } from "./convert";
 import { Agency, Route, Segment } from "./types";
 
@@ -65,10 +66,14 @@ export const getStops = async (agency: string) => {
 };
 
 // Get information about the buses currently on the routes
-export const getCurrentBuses = (agency: string) => {
-    const url = generateUrl("vehicle_statuses", agency, { include_arrivals: "true" });
+export const getCurrentBuses = async (agency: string) => {
+    const url = generateUrl("vehicle_statuses", agency);
 
-    return get(url, "agency");
+    const data = await get(url, "buses");
+
+    const stops = getBusesFromData(data);
+
+    return stops;
 };
 
 // Get the current announcements
