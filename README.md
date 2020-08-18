@@ -1,25 +1,29 @@
 # rts-api
+
 The unofficial JavaScript bindings for the RTS bus network API.
 Note: since there is no public documentation for the API, I may have made some mistakes in my explanation of the fields, but the data is true to the response from the RTS servers. If there is a mistake, let me know.
 
 ## Installation
+
 ```
 npm install rts-api
 ```
 
 ## Usage
+
 ```javascript
-import { getCurrentBuses } from 'rts-api';
+import { getCurrentBuses } from "rts-api";
 
 const agencyID = "116";
 
-getCurrentBuses(agencyID)
-  .then(buses => console.log(buses));
+getCurrentBuses(agencyID).then((buses) => console.log(buses));
 ```
 
 ## Functions
+
 #### `getCurrentBuses(agencyID: string)`
-Returns an array of bus objects (promise).
+
+Returns an array of bus objects (promise) that are currently in service.
 Bus object:
 | Field Name | Type | Description |
 |-|-|-|
@@ -47,7 +51,12 @@ Bus object:
 | `apcStatus` | `string` | `up` if the vehicle's Automatic Passenger Counting is operational (lets you know if `load` is reliable) |
 
 #### `getAgency(agencyID: string)`
-Returns an agency objects (promise)
+
+Returns an agency object (promise)
+
+#### `getAgencies()`
+
+Returns an array of agency objects
 Agency object:
 | Field Name | Type | Description |
 |-|-|-|
@@ -68,13 +77,58 @@ Agency object:
 | `timezoneOffset` | `number` | The offset in seconds from GMT |
 | `url` | `string` | The URL for this agency's transit page |
 
-#### `getAgencies()`
-Returns `Promise<Agency[]>`
+#### `getStops(agencyID: string)`
+
+Returns an array of bus stop objects (promise) for the specified agency.
+| Field Name | Type | Description |
+|-|-|-|
+| `code` | `string` | Unsure |
+| `description` | `string` | A description of this bus stop, typically the stop's address |
+| `id` | `string` | The unique ID for this bus stop |
+| `locationType` | `string` | The type for this stop, typically `"stop"` |
+| `name` | `string` | The name for this bus stop |
+| `parentStationID` | `string` | The ID of this stop's parent station (largely unused) |
+| `position` | `number[]` | The coordinates of this bus stop, `[latitude, longitude]` |
+| `url` | `string` | The URL for this bus stop (largely unused) |
+
+#### `getRoutes(agencyID: string)`
+
+Returns an array of route objects (promise) that are in the specified agency
+Route object:
+| Field Name | Type | Description |
+|-|-|-|
+| `agencyID` | `string` | The ID of the agency that this route belongs to |
+| `bounds` | `number[]` | The coordinates of the box that contain this route `[latTopLeft, longTopLeft, latBottomRight, longBottomRight]` |
+| `color` | `string` | The hex code of the color of this route |
+| `description` | `string` | A description for this route (largely unused) |
+| `id` | `string` | The unique ID for this route |
+| `isActive` | `boolean` | `true` if this route is currently servicing passengers |
+| `longName` | `string` | The name for this route |
+| `segments` | `string[]` | The ID of the segments that make up this route |
+| `shortName` | `string` | The condensed route name, typically just the route number |
+| `textColor` | `string` | The hex code for the text color that would be legible on this route's color |
+| `type` | `string` | The type of vehicle that operates this route, typically `"bus"` |
+| `url` | `string` | The web page for the route's schedule |
+
+#### `getSegments(agencyID: string)`
+
+Returns a `Map`, where the key is the segment's unique ID and the value is the segment object (promise).
+Segments are used to draw the routes on a map
+Segment object:
+| Field Name | Type | Description |
+|-|-|-|
+| `points` | `string` | [An encoded polyline for this segment](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) |
+| `levels` | `string` | Specifies at which levels this segment is visible. Currently obsolete. |
 
 #### `getAnnouncements(agencyID: string)`
 
-
-getAnnouncements,
-    getRoutes,
-    getSegments,
-    getStops,
+Returns an array of announcements (promise) for the specified agency.
+Announcement object:
+| Field Name | Type | Description |
+|-|-|-|
+| `agencyID` | `string` | The ID of the agency that this announcement applies to |
+| `date` | `string` | The date of the announcement. Typically in `YYYY/MM/DD` format |
+| `hasContent` | `boolean` | `true` if the `content` field has a value |
+| `id` | `string` | The unique ID for this announcement |
+| `startAt` | `Date` | The date on which the announcement's changes become effective |
+| `title` | `string` | The title for this announcement`| |`urgent`|`boolean`|`true`if the announcement is urgent | |`content`|`string` | HTML content accompanying this announcement. |
