@@ -10,13 +10,13 @@ Most of the data provided by the API will be unnecessary for the average use cas
     -   [Installation](#installation)
     -   [Usage](#usage)
     -   [Functions](#functions)
-        -   [`getCurrentBuses(agencyID: string)`](#getcurrentbuses-agencyid-string)
-        -   [`getAgency(agencyID: string)`](#getagency-agencyid-string)
+        -   [`getCurrentBuses(agencyID: string)`](#getcurrentbusesagencyid-string)
+        -   [`getAgency(agencyID: string)`](#getagencyagencyid-string)
         -   [`getAgencies()`](#getagencies)
-        -   [`getStops(agencyID: string)`](#getstops-agencyid-string)
-        -   [`getRoutes(agencyID: string)`](#getroutes-agencyid-string)
-        -   [`getSegments(agencyID: string)`](#getsegments-agencyid-string)
-        -   [`getAnnouncements(agencyID: string)`](#getannouncements-agencyid-string)
+        -   [`getStops(agencyID: string)`](#getstopsagencyid-string)
+        -   [`getRoutes(agencyID: string)`](#getroutesagencyid-string)
+        -   [`getSegments(agencyID: string)`](#getsegmentsagencyid-string)
+        -   [`getAnnouncements(agencyID: string)`](#getannouncementsagencyid-string)
 
 ## Installation
 
