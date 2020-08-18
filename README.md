@@ -1,7 +1,9 @@
 # rts-api
 
 The unofficial JavaScript bindings for the RTS bus network API.
-Note: since there is no public documentation for the API, I may have made some mistakes in my explanation of the fields, but the data is true to the response from the RTS servers. If there is a mistake, let me know.
+Note: since there is no public documentation for the API, the usage of some of the data points provided by the API is unknown, but the data is provided anyway, unmodified from the original data, only organized. If there is a mistake, let me know.
+
+Most of the data provided by the API will be unnecessary for the average use case of this project, so the data fields are sorted by utility in the docs below.
 
 ## Installation
 
