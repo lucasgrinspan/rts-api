@@ -28,6 +28,7 @@ export interface Route {
     isActive: boolean;
     longName: string;
     segments: string[];
+    stops: string[];
     shortName: string;
     textColor: string;
     type: string;
@@ -35,6 +36,7 @@ export interface Route {
 }
 
 export interface Segment {
+    id: string;
     levels: string;
     points: string;
 }

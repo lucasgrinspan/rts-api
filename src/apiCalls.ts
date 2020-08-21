@@ -8,6 +8,7 @@ import {
     getAnnouncementsFromData,
 } from "./convert";
 import { Agency, Route, Segment } from "./types";
+import { getSegmentsOnRoute } from "./helperCalls";
 
 // This file defines all of the possible endpoints that you can call
 
@@ -35,7 +36,7 @@ export const getAgency = async (agency: string): Promise<Agency> => {
 
 // Get information about all of the available bus routes
 export const getRoutes = async (agency: string): Promise<Route[]> => {
-    const url = generateUrl("routes", agency, { include_segments: "true" });
+    const url = generateUrl("routes", agency, { include_segments: "true", include_stops: "true" });
 
     const data = await get(url, "routes");
 
@@ -45,19 +46,29 @@ export const getRoutes = async (agency: string): Promise<Route[]> => {
 };
 
 // Get information about all of the segments that make the bus routes
-export const getSegments = async (agency: string) => {
+export const getSegments = async (agency: string, routeID = "") => {
     const url = generateUrl("segments", agency);
 
     const data = await get(url, "segments");
 
-    const segments = getSegmentsFromData(data);
+    let segments = getSegmentsFromData(data);
+
+    if (routeID) {
+        segments = await getSegmentsOnRoute(agency, routeID, segments);
+    }
 
     return segments;
 };
 
 // Get information about all of the available bus stops
-export const getStops = async (agency: string) => {
-    const url = generateUrl("stops", agency);
+export const getStops = async (agency: string, routeID = "") => {
+    let specificRoute: any = {};
+
+    if (routeID) {
+        specificRoute["routes"] = routeID;
+    }
+
+    const url = generateUrl("stops", agency, specificRoute);
 
     const data = await get(url, "stops");
 
@@ -67,8 +78,14 @@ export const getStops = async (agency: string) => {
 };
 
 // Get information about the buses currently on the routes
-export const getCurrentBuses = async (agency: string) => {
-    const url = generateUrl("vehicle_statuses", agency);
+export const getCurrentBuses = async (agency: string, routeID = "") => {
+    let specificRoute: any = {};
+
+    if (routeID) {
+        specificRoute["routes"] = routeID;
+    }
+
+    const url = generateUrl("vehicle_statuses", agency, specificRoute);
 
     const data = await get(url, "buses");
 

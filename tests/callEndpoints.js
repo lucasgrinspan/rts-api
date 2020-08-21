@@ -43,12 +43,28 @@ getCurrentBuses("116")
         console.log("❌ getCurrentBuses");
     });
 
+getCurrentBuses("116", "4001194")
+    .then(() => {
+        console.log("✅ getCurrentBuses with route ID");
+    })
+    .catch(() => {
+        console.log("❌ getCurrentBuses with route ID");
+    });
+
 getStops("116")
     .then(() => {
         console.log("✅ getStops");
     })
     .catch(() => {
         console.log("❌ getStops");
+    });
+
+getStops("116", "4001150")
+    .then(() => {
+        console.log("✅ getStops with route ID");
+    })
+    .catch(() => {
+        console.log("❌ getStops with route ID");
     });
 
 getSegments("116")

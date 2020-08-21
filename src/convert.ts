@@ -55,6 +55,7 @@ export const getRoutesFromData = (data: any): Route[] => {
             isActive: routeData.is_active,
             longName: routeData.long_name,
             segments: routeData.segments.map((x: number) => x.toString()),
+            stops: routeData.stops.map((x: number) => x.toString()),
             shortName: routeData.short_name,
             textColor: routeData.text_color,
             type: routeData.type,
@@ -67,19 +68,18 @@ export const getRoutesFromData = (data: any): Route[] => {
     return routes;
 };
 
-export const getSegmentsFromData = (data: any): Map<string, Segment> => {
+export const getSegmentsFromData = (data: any): Segment[] => {
     const segmentsData: any[] = data[DATA_KEYS.segments];
 
-    const segments: Map<string, Segment> = new Map(
-        segmentsData.map((segmentData) => {
-            const segment: Segment = {
-                levels: segmentData.levels,
-                points: segmentData.points,
-            };
+    const segments: Segment[] = segmentsData.map((segmentData) => {
+        const segment: Segment = {
+            id: segmentData.id.toString(),
+            levels: segmentData.levels,
+            points: segmentData.points,
+        };
 
-            return [segmentData.id.toString(), segment];
-        })
-    );
+        return segment;
+    });
 
     return segments;
 };
