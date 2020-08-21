@@ -1,6 +1,6 @@
 {
     "name": "rts-api",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "An unofficial API for the RTS bus network",
     "main": "dist/index.js",
     "scripts": {
